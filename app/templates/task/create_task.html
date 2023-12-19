@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Create task</title>
+    <link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container w-50">
+<div class="card text-left mt-5" style="width: 32rem;align:center;">
+    <div class="card-body">
+      <div class="card-header">
+        <h1>Создать Задачу</h1>
+      </div>
+        <form action="/create-task" method="post">
+            <div class="mb-3">
+                  <label for="title" class="form-label">Task title</label>
+                  <input type="text" class="form-control" id="title"  name="title" placeholder="title">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Task description</label>
+                <textarea class="form-control" id="description"  name="description"  rows="3" placeholder=" description"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Task status</label>
+                <select id="status" name="status" class="form-select" aria-label="Default select example">
+                  <option selected value="PENDING">PENDING</option>
+                  <option value="ACTIVE">ACTIVE</option>
+                  <option value="COMPLETED">COMPLETED</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="created_at" class="form-label">Created date</label>
+                <input type="datetime-local" class="form-control" id="created_at"  name="created_at">
+            </div>
+            <div class="mb-3">
+                <label for="due_date" class="form-label">Due date</label>
+                <input type="datetime-local" class="form-control" id="due_date"  name="due_date">
+            </div>
+            <div class="mb-3">
+                <label for="project_id" class="form-label">Select existing Project id</label>
+                <select id="project_id" name="project_id" class="form-select" aria-label="Default select example">
+                    {% for project in projects %}
+                        <option value="{{ project.id }}">{{project.id}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-danger">
+        </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html></html>

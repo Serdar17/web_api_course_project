@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Edit user</title>
+    <link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container w-50">
+<div class="card text-left mt-5" style="width: 32rem;align:center;">
+    <div class="card-body">
+      <div class="card-header">
+        <h1> Изменить пользователя </h1>
+      </div>
+        <form action="/user/update/{{user.id}}" method="post">
+            <div class="mb-3">
+                  <label for="id" class="form-label">User id</label>
+                  <input type="text" class="form-control" id="id" name="id" value="{{user.id}}" readonly>
+            </div>
+             <div class="mb-3">
+                  <label for="name" class="form-label">User name</label>
+                  <input type="text" class="form-control" id="name"  name="name" value="{{user.name}}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">User email</label>
+                <input class="form-control" id="email"  name="email"  value="{{user.email}}">
+            </div>
+
+            <input type="submit" class="btn btn-primary"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-danger">
+        </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

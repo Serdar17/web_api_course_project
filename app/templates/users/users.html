@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Таблица пользователей. Тут надо сделать CRUD над пользователями</h2>
+<div class="m-lg-auto">
+    <table class="table table-striped table-hover w-50 p-3 m-lg-auto">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+    <tbody>
+<!--        {% for users in users %}-->
+<!--            <tr>-->
+<!--                <td>{{ users.id }}</td>-->
+<!--                <td>{{ users.name }} </td>-->
+<!--                <td>{{ users.email }}</td>-->
+<!--                <td><a class="btn btn-warning" href="/users/edit/{{users.id}}">Изменить</a></td>-->
+<!--                <td><a class="btn btn-danger" href="/users/delete/{{users.id}}">Удалить</a></td>-->
+<!--            </tr>-->
+<!--        {% endfor %}-->
+    </tbody>
+
+    </table>
+        <div class="d-flex justify-content-center mt-3">
+            <a class="btn btn-success" href="/create-user">Создать пользователя</a>
+        </div>
+    </div>
+
+<script>
+    var ws = new WebSocket("ws://localhost:8000/ws/users");
+    const container = document.querySelector("tbody")
+    ws.onmessage = function (event) {
+        var users = JSON.parse(event.data);
+        console.log(users);
+        generateTable(users);
+    };
+
+    function generateTable(data) {
+        while (container.firstChild) {
+            container.removeChild(container.lastChild);
+        }
+        container.innerHTML += data.map(item => `
+<tr>
+    <td>${item.id}</td>
+    <td>${item.name}</td>
+    <td>${item.email}</td>
+    <td><a href="/user/edit/${item.id}" class="btn btn-warning">Изменить</a></td>
+    <td><a href="/user/delete/${item.id}" class="btn btn-danger">Удалить</a></td>
+</tr>
+    `).join("");
+    }
+</script>
+{% endblock %}

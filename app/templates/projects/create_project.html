@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Create project</title>
+    <link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container w-50">
+<div class="card text-left mt-5" style="width: 32rem;align:center;">
+    <div class="card-body">
+      <div class="card-header">
+        <h1>Создать Проект</h1>
+      </div>
+        <form action="/create-project" method="post">
+            <div class="mb-3">
+                  <label for="title" class="form-label">Project title</label>
+                  <input type="text" class="form-control" id="title"  name="title" placeholder="title">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Project description</label>
+                <textarea class="form-control" id="description"  name="description"  rows="3" placeholder=" description"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="start_date" class="form-label">Start date</label>
+                <input type="datetime-local" class="form-control" id="start_date"  name="start_date">
+            </div>
+            <div class="mb-3">
+                <label for="end_date" class="form-label">End date</label>
+                <input type="datetime-local" class="form-control" id="end_date"  name="end_date">
+            </div>
+            <input type="submit" class="btn btn-primary"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-danger">
+        </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html></html>

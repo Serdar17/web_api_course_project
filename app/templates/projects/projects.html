@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Таблица проектов. Тут надо сделать CRUD над проектами</h2>
+<div class="m-lg-auto">
+    <table class="table table-striped table-hover w-50 p-3 m-lg-auto">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start date</th>
+      <th>End date</th>
+    </tr>
+  </thead>
+    <tbody>
+<!--        {% for project in projects %}-->
+<!--            <tr>-->
+<!--                <td>{{ project.id }}</td>-->
+<!--                <td>{{ project.title }} </td>-->
+<!--                <td>{{ project.description }}</td>-->
+<!--                <td>{{ project.start_date }}</td>-->
+<!--                <td>{{ project.end_date }}</td>-->
+<!--                <td><a class="btn btn-warning" href="/project/edit/{{project.id}}">Изменить</a></td>-->
+<!--                <td><a class="btn btn-danger" href="/project/delete/{{project.id}}">Удалить</a></td>-->
+<!--            </tr>-->
+<!--        {% endfor %}-->
+    </tbody>
+
+</table>
+    <div class="d-flex justify-content-center mt-3">
+        <a class="btn btn-success" href="/create-project">Создать проект</a>
+    </div>
+</div>
+
+<script>
+    var ws = new WebSocket("ws://localhost:8000/ws/projects");
+    const container = document.querySelector("tbody")
+    ws.onmessage = function (event) {
+        var projects = JSON.parse(event.data);
+        console.log(projects);
+        generateTable(projects);
+    };
+
+    function generateTable(data) {
+        while (container.firstChild) {
+            container.removeChild(container.lastChild);
+        }
+        container.innerHTML += data.map(item => `
+<tr>
+    <td>${item.id}</td>
+    <td>${item.title}</td>
+    <td>${item.description}</td>
+    <td>${item.start_date}</td>
+    <td>${item.end_date}</td>
+    <td><a href="/project/edit/${item.id}" class="btn btn-warning">Изменить</a></td>
+    <td><a href="/project/delete/${item.id}" class="btn btn-danger">Удалить</a></td>
+</tr>
+    `).join("");
+    }
+</script>
+{% endblock %}

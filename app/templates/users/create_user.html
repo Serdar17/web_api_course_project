@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Create user</title>
+    <link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container w-50">
+<div class="card text-left mt-5" style="width: 32rem;align:center;">
+    <div class="card-body">
+      <div class="card-header">
+        <h1>Создать Пользователя</h1>
+      </div>
+        <form action="/create-user" method="post">
+            <div class="mb-3">
+                  <label for="name" class="form-label">User Name</label>
+                  <input type="text" class="form-control" id="name"  name="name" placeholder="name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">User Email</label>
+                <input type="text" class="form-control" id="email"  name="email" placeholder="email">
+            </div>
+
+            <input type="submit" class="btn btn-primary"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-danger">
+           </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
