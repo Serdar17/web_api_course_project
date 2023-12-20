@@ -33,7 +33,7 @@
 </div>
 
 <script>
-    var ws = new WebSocket("ws://localhost:8000/ws/projects");
+    var ws = new WebSocket("wss://web-api-project.onrender.com/projects");
     const container = document.querySelector("tbody")
     ws.onmessage = function (event) {
         var projects = JSON.parse(event.data);
