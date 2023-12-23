@@ -10,12 +10,13 @@ from sqlalchemy.orm import Session
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
+host_url = "web-api-project.onrender.com"
 
 
 @router.get("/project", response_class=HTMLResponse)
 async def get_project_page(request: Request, db: Session = Depends(get_db)):
     projects = await project_routes.get_all_projects(0, 100, db=db)
-    return templates.TemplateResponse("projects/projects.html", {"request": request, "projects": projects})
+    return templates.TemplateResponse("projects/projects.html", {"request": request, "projects": projects, "host_url": host_url})
 
 
 @router.get("/project/delete/{project_id}", response_class=RedirectResponse)

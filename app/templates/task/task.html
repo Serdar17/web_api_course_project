@@ -35,7 +35,7 @@
 </div>
 
 <script>
-    var ws = new WebSocket("wss://web-api-project.onrender.com/ws/tasks");
+    var ws = new WebSocket(`wss://{{ host_url }}/ws/tasks`);
     const container = document.querySelector("tbody")
     ws.onmessage = function (event) {
         var tasks = JSON.parse(event.data);

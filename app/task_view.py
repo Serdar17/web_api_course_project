@@ -11,11 +11,13 @@ from sqlalchemy.orm import Session
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
+host_url = "web-api-project.onrender.com"
+
 
 @router.get("/task")
 async def get_user_page(request: Request, db: Session = Depends(get_db)):
     tasks = await task_routes.get_tasks(0, 1000, db=db)
-    return templates.TemplateResponse("task/task.html", {"request": request, "tasks": tasks})
+    return templates.TemplateResponse("task/task.html", {"request": request, "tasks": tasks, "host_url": host_url})
 
 
 @router.get("/task/delete/{task_id}", response_class=RedirectResponse)

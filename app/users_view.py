@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
+host_url = "web-api-project.onrender.com"
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -20,7 +21,7 @@ async def root(request: Request):
 @router.get("/user")
 async def get_user_page(request: Request, db: Session = Depends(get_db)):
     users = await user_routes.read_users(0, 100, db=db)
-    return templates.TemplateResponse("users/users.html", {"request": request, "users": users})
+    return templates.TemplateResponse("users/users.html", {"request": request, "users": users, "host_url": host_url})
 
 
 @router.get("/user/delete/{user_id}", response_class=RedirectResponse)

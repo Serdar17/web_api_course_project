@@ -29,7 +29,7 @@
     </div>
 
 <script>
-    var ws = new WebSocket("wss://web-api-project.onrender.com/ws/users");
+    var ws = new WebSocket(`wss://{{ host_url }}/ws/users`);
     const container = document.querySelector("tbody")
     ws.onmessage = function (event) {
         var users = JSON.parse(event.data);
