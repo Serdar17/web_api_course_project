@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
-host_url = "localhost:8000"
+host_url = "web-api-project.onrender.com"
 
 
 @router.get("/project", response_class=HTMLResponse)
