@@ -32,12 +32,18 @@
     </div>
 </div>
 
+<div id="toast">
+  <div class="checkicon"> <i class="fas fa-check-square"></i> </div>
+    SUCCESS: The models have been changed!
+</div>
+
 <script>
     var ws = new WebSocket(`wss://{{ host_url }}/ws/projects`);
     const container = document.querySelector("tbody")
     ws.onmessage = function (event) {
         var projects = JSON.parse(event.data);
         console.log(projects);
+        toastFunction();
         generateTable(projects);
     };
 
