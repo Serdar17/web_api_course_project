@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
-host_url = "web-api-project.onrender.com"
+host_url = "localhost:8000"
 
 
 @router.get("/project", response_class=HTMLResponse)
@@ -30,7 +30,7 @@ async def edit_project_page(request: Request, project_id: int, db: Session = Dep
     project = await project_routes.get_project(project_id, db=db)
     project.start_date = project.start_date.strftime("%Y-%m-%d %H:%M")
     project.end_date = project.end_date.strftime("%Y-%m-%d %H:%M")
-    return templates.TemplateResponse("projects/edit_project.html", {"request": request, "projects": project})
+    return templates.TemplateResponse("projects/edit_project.html", {"request": request, "project": project})
 
 
 @router.post("/project/update/{project_id}", response_class=HTMLResponse)

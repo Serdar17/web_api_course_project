@@ -39,6 +39,7 @@
     ws.onmessage = function (event) {
         var users = JSON.parse(event.data);
         console.log(users);
+        toastFunction();
         generateTable(users);
     };
 
