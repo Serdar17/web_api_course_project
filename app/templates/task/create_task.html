@@ -2,8 +2,15 @@
 <head>
     <title>Create task</title>
     <link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
 </head>
 <body>
+<div class="backBtn" onclick="location.href='/task'">
+      <span class="line tLine"></span>
+      <span class="line mLine"></span>
+      <span class="label">Back</span>
+      <span class="line bLine"></span>
+</div>
 <div class="container w-50">
 <div class="card text-left mt-5 mb-4" style="width: 32rem;align:center;">
     <div class="card-body">
@@ -48,6 +55,6 @@
         </div>
     </div>
 </div>
-
+  <script src="{{ url_for('static', path='/js/script.js') }}"></script>
 </body>
 </html></html>
